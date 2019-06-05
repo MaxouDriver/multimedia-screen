@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-clock',
@@ -6,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clock.component.sass']
 })
 export class ClockComponent implements OnInit {
-  constructor() { }
+  date: Date = new Date();
+  suscription;
+
+  constructor() {
+    this.suscription = timer(0,1000);
+  }
 
   ngOnInit() {
-
+    this.suscription.subscribe(() => {
+      this.date = new Date();
+    });
+  }
+  ngOnDestroy(){
+    this.suscription.unsubscribe();
   }
 }

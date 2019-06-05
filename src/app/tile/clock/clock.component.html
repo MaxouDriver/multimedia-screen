@@ -1,1 +1,30 @@
-<p>Clock component</p>
+<div class="clock-container">
+  <div class="clock-col">
+    <p class="clock-day clock-timer">
+    </p>
+    <p class="clock-label">
+      {{date | date: 'dd'}}
+    </p>
+  </div>
+  <div class="clock-col">
+    <p class="clock-hours clock-timer">
+    </p>
+    <p class="clock-label">
+      {{date | date: 'hh'}}
+    </p>
+  </div>
+  <div class="clock-col">
+    <p class="clock-minutes clock-timer">
+    </p>
+    <p class="clock-label">
+      {{date | date: 'mm'}}
+    </p>
+  </div>
+  <div class="clock-col">
+    <p class="clock-seconds clock-timer">
+    </p>
+    <p class="clock-label">
+      {{date | date: 'ss'}}
+    </p>
+  </div>
+</div>
