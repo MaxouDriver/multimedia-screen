@@ -18,7 +18,7 @@ export class TileWallComponent implements OnInit {
     {name: "clock", cols: 2, rows: 1, color: 'lightpink'},
     {name: "weather", cols: 1, rows: 1, color: '#DDBDF1'},
     {name: "gg", cols: 1, rows: 2, color: 'lightgreen'},
-    {name: "ee", cols: 3, rows: 1, color: 'lightblue'},
+    {name: "gallery", cols: 3, rows: 1, color: 'lightblue'},
   ];
   constructor() {
 
