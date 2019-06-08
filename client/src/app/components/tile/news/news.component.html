@@ -1,0 +1,12 @@
+<mat-card *ngFor="let n of news" class="card">
+    <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>{{n.getTitle()}}</mat-card-title>
+        <mat-card-subtitle>{{n.getDate()}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+        {{n.getContent()}}
+        </p>
+    </mat-card-content>
+</mat-card>
