@@ -15,6 +15,8 @@ import { NewsComponent } from './components/tile/news/news.component';
 
 import { ClockService } from './services/clock/clock.service';
 
+import * as $ from 'jquery';
+
 const config: SocketIoConfig = { url: 'http://localhost:1234', options: {} };
 
 

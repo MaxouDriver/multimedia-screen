@@ -82,7 +82,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/fullscreen', function (req, res) {
-  io.emit('fullscreen ' + req.body.type, {for: 'everyone' });
+  io.emit('fullscreen', {componentName: req.body.type, for: 'everyone' });
   res.send({code: 200, message: 'Done'});
 });
 
