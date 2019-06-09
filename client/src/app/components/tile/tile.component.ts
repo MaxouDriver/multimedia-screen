@@ -6,8 +6,10 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { NewsComponent } from './news/news.component';
 import { EditionComponent } from './edition/edition.component';
 
-interface MyPost {
+interface TileInfos {
   nb: number;
+  cols: number;
+  rows: number;
 } 
 
 @Component({
@@ -19,6 +21,8 @@ export class TileComponent implements OnInit, AfterViewInit {
   @ViewChild('content', {read: ViewContainerRef, static : false}) _container: ViewContainerRef;
   @Input() name: string;
   @Input() nb: number;
+  @Input() cols: number;
+  @Input() rows: number;
 
   constructor(private _resolver: ComponentFactoryResolver) { 
 
@@ -53,8 +57,10 @@ export class TileComponent implements OnInit, AfterViewInit {
     }
     var ref = this._container.createComponent(cmpFactory);
     
-    let myPost: MyPost = <MyPost>ref.instance;
-    myPost.nb = this.nb;
+    let tileInfos: TileInfos = <TileInfos>ref.instance;
+    tileInfos.nb = this.nb;
+    tileInfos.cols = this.cols;
+    tileInfos.rows = this.rows;
     
     ref.changeDetectorRef.detectChanges();
   }
