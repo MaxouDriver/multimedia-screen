@@ -22,6 +22,7 @@ export class TileWallComponent implements OnInit {
   ];
   previousState: Tile[] = undefined; 
   fullscreen: boolean = false;
+  edition: boolean = false;
 
   constructor(private socket: Socket) {
     this.socket.on("fullscreen", (value) => {
@@ -31,6 +32,52 @@ export class TileWallComponent implements OnInit {
     this.socket.on("closefullscreen", () => {
       this.closeFullScreen();
     });
+
+    this.socket.on("edition", () => {
+      this.openEditionMode();
+    });
+
+    this.socket.on("closeedition", () => {
+      this.closeEditionMode();
+    });
+
+    this.socket.on("swap", (value) => {
+      this.swapComponents(value.componentNum1, value.componentNum2);
+    });
+  }
+
+  swapComponents(componentNum1, componentNum2){
+    if (this.edition &&
+      componentNum1 >= 0 && componentNum1 < this.tiles.length &&
+      componentNum2 >= 0 && componentNum2 < this.tiles.length) {
+
+        var tempTiles = $.extend(true, [], this.previousState);
+        var temp = tempTiles[componentNum1].name;
+        tempTiles[componentNum1].name = tempTiles[componentNum2].name;
+        tempTiles[componentNum2].name = temp;
+
+        this.tiles = tempTiles;
+    }
+  }
+
+  openEditionMode(){
+    this.onModifications();
+    this.edition = true;
+
+    var tempTiles = $.extend(true, [], this.tiles);
+
+    tempTiles.forEach((tile) => {
+      tile.name = "edition";
+    });
+
+    this.tiles = tempTiles;
+  }
+
+  closeEditionMode(){
+    if (this.edition) {
+      this.revertModifications();
+      this.edition = false;
+    }
   }
 
   openFullScreen(componentName){
@@ -51,7 +98,7 @@ export class TileWallComponent implements OnInit {
   }
 
   closeFullScreen(){
-    if (this.fullscreen == true) {
+    if (this.fullscreen) {
       this.revertModifications();
       this.fullscreen = false;
     }

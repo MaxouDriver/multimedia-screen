@@ -91,4 +91,20 @@ app.post('/closefullscreen', function (req, res) {
   res.send({code: 200, message: 'Done'});
 });
 
+app.post('/edition', function (req, res) {
+  io.emit('edition', {for: 'everyone' });
+  res.send({code: 200, message: 'Done'});
+});
+
+app.post('/closeedition', function (req, res) {
+  io.emit('closeedition', {for: 'everyone' });
+  res.send({code: 200, message: 'Done'});
+});
+
+app.post('/swap', function (req, res) {
+  io.emit('swap', {componentNum1: req.body.num1, componentNum2: req.body.num2, for: 'everyone' });
+  res.send({code: 200, message: 'Done'});
+});
+
+
 server.listen(port);

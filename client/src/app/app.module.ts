@@ -12,10 +12,12 @@ import { WeatherComponent } from './components/tile/weather/weather.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { GalleryComponent } from './components/tile/gallery/gallery.component';
 import { NewsComponent } from './components/tile/news/news.component';
+import { EditionComponent } from './components/tile/edition/edition.component';
 
 import { ClockService } from './services/clock/clock.service';
 
 import * as $ from 'jquery';
+
 
 const config: SocketIoConfig = { url: 'http://localhost:1234', options: {} };
 
@@ -29,9 +31,10 @@ const config: SocketIoConfig = { url: 'http://localhost:1234', options: {} };
     WeatherComponent,
     NotFoundComponent,
     GalleryComponent,
-    NewsComponent
+    NewsComponent,
+    EditionComponent
   ],
-  entryComponents: [ClockComponent, WeatherComponent, NotFoundComponent, GalleryComponent, NewsComponent],
+  entryComponents: [ClockComponent, WeatherComponent, NotFoundComponent, GalleryComponent, NewsComponent, EditionComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
