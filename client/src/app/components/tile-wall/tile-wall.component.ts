@@ -44,6 +44,22 @@ export class TileWallComponent implements OnInit {
     this.socket.on("swap", (value) => {
       this.swapComponents(value.componentNum1, value.componentNum2);
     });
+
+    this.socket.on("resize", (value) => {
+      this.resizeComponent(value.componentNum, value.cols, value.rows);
+    });
+  }
+
+  resizeComponent(componentNum, newCols, newRows){
+    if (this.edition &&
+      componentNum >= 0 && componentNum < this.tiles.length) {
+        var tempTiles = $.extend(true, [], this.previousState);
+
+        tempTiles[componentNum].cols = newCols;
+        tempTiles[componentNum].rows = newRows;
+
+        this.tiles = tempTiles;
+    }
   }
 
   swapComponents(componentNum1, componentNum2){

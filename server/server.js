@@ -106,5 +106,10 @@ app.post('/swap', function (req, res) {
   res.send({code: 200, message: 'Done'});
 });
 
+app.post('/resize', function (req, res) {
+  io.emit('resize', {componentNum: req.body.num, cols: req.body.cols, rows: req.body.rows, for: 'everyone' });
+  res.send({code: 200, message: 'Done'});
+});
+
 
 server.listen(port);
